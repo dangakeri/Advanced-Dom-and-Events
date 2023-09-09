@@ -111,6 +111,7 @@ logo.classList.contains('c')
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
+// Button Scrolling
 btnScrollTo.addEventListener('click', function (e) {
   /*
  const s1coords = section1.getBoundingClientRect();
@@ -140,23 +141,49 @@ btnScrollTo.addEventListener('click', function (e) {
    // });*/
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+// Page Navigation
 
+// document.querySelector('.nav__link').forEach(
+//   function (el) {
+//     el.addEventListener('click', function (e) {
+//       e.preventDefault();
+//       const id = this.getAttribute('href');
+//       document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//     });
+//   });
+
+// Using event delegation
+// 1.Add event listener to common parent element
+// 2.Determine what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  // Matching strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+// Lecture
+/*
 // Types of events and Events Handlers
 const h1 = document.querySelector('h1');
 
 const alertH1 = function (e) {
   alert('addEventListener: Great! You are reading the heading :D');
-  // h1.removeEventListener('mouseenter', alertH1)
+  h1.removeEventListener('mouseenter', alertH1)
 }
 
-h1.addEventListener('mouseenter', alertH1);
+// h1.addEventListener('mouseenter', alertH1);
 
 setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 
 // h1.onmouseenter = function (e) {
 //   alert('addEventListener: Great! You are reading the heading :D');
 // } 
-
+*/
+/*
 // Event propagation
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -178,3 +205,4 @@ document.querySelector('.nav').addEventListener('click', function (e) {
   console.log('NAV', e.target, e.currentTarget);
 },
 );
+*/
